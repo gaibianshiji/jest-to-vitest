@@ -1,0 +1,12 @@
+{
+  "name": "jest-to-vitest",
+  "version": "1.0.0",
+  "description": "Automated codemod for migrating Jest to Vitest",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run-tests.mjs",
+    "migrate": "node migrate.mjs"
+  },
+  "keywords": ["jest", "vitest", "codemod", "migration", "testing"],
+  "license": "MIT"
+}

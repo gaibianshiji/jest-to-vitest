@@ -1,0 +1,73 @@
+version: "1.0.0"
+nodes:
+  - id: jest-global
+    name: "Replace jest global with vi"
+    steps:
+      - name: "Replace jest.fn/mock/spyOn/etc with vi equivalents"
+        js-ast-grep:
+          js_file: scripts/01-jest-global.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: imports
+    name: "Update imports"
+    steps:
+      - name: "Replace @jest/globals with vitest imports"
+        js-ast-grep:
+          js_file: scripts/02-imports.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: config
+    name: "Migrate config files"
+    steps:
+      - name: "Convert jest.config to vitest.config"
+        js-ast-grep:
+          js_file: scripts/03-config.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: mocks
+    name: "Update mock patterns"
+    steps:
+      - name: "Replace jest.mock/requireActual/importActual patterns"
+        js-ast-grep:
+          js_file: scripts/04-mocks.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: timers
+    name: "Update timer helpers"
+    steps:
+      - name: "Replace jest timer methods with vi equivalents"
+        js-ast-grep:
+          js_file: scripts/05-timers.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: matchers
+    name: "Update custom matchers"
+    steps:
+      - name: "Replace Jest-specific matcher patterns"
+        js-ast-grep:
+          js_file: scripts/06-matchers.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: module-mock
+    name: "Update module mocking"
+    steps:
+      - name: "Replace jest.mock() module patterns with vi.mock()"
+        js-ast-grep:
+          js_file: scripts/07-module-mock.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: cleanup
+    name: "Final cleanup"
+    steps:
+      - name: "Remove unused jest imports, add vitest imports"
+        js-ast-grep:
+          js_file: scripts/08-cleanup.js
+          language: javascript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]

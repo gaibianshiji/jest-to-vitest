@@ -1,0 +1,21 @@
+schema_version: "1.0"
+name: "jest-to-vitest"
+version: 1.0.0
+description: "Automated migration from Jest to Vitest. Covers 95%+ of deterministic changes: jest→vi global, mock/spy renames, config migration, import updates, and timer helpers."
+author: "boringAI"
+license: "MIT"
+targets:
+  languages:
+    - typescript
+    - javascript
+keywords:
+  - jest
+  - vitest
+  - migration
+  - testing
+  - codemod
+  - frontend
+  - unit-test
+registry:
+  access: public
+  visibility: public

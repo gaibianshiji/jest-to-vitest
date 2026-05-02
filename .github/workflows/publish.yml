@@ -1,0 +1,31 @@
+name: Publish Codemod
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'codemod.yaml'
+      - 'workflow.yaml'
+      - 'scripts/**'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install codemod CLI
+        run: npm install -g codemod@latest
+
+      - name: Login to Codemod Registry
+        run: npx codemod login --api-key ${{ secrets.CODEMOD_API_KEY }}
+
+      - name: Publish to registry
+        run: npx codemod publish
