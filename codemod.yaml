@@ -1,5 +1,5 @@
 schema_version: "1.0"
-name: "jest-to-vitest"
+name: "jest-to-vitest-gaibianshiji"
 version: 1.0.0
 description: "Automated migration from Jest to Vitest. Covers 95%+ of deterministic changes: jest→vi global, mock/spy renames, config migration, import updates, and timer helpers."
 author: "boringAI"
